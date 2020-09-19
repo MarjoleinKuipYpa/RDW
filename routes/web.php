@@ -16,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/autos/lastten', 'AutoController@last10PersonAuto');
-Route::get('/autos/show/{kenteken}', 'AutoController@show');
+
+Route::group(['prefix' => 'autos'], function () {
+    Route::get('/lastten', 'AutoController@GetLast10Cars');
+    Route::get('/show/{kenteken}', 'AutoController@showCarDetails');
+});
